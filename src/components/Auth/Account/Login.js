@@ -4,72 +4,49 @@ import getCookie from '../../../utils/cookie';
 
 const Login = () =>{
     const [data, setData] = useState({email:"", password:""});
+    const [rememberMe, setRememberMe] = useState(false);
+    const formData = new FormData();
+    formData.append("email", data.email);
+    formData.append("password", data.password);
+    formData.append("remember", rememberMe);
     const handleSubmit = async(e) =>{
         try{
             e.preventDefault();
             await getCookie();
-            await api().post('api/login');
-            await api().post("api/user");
+            await api().post('api/login', formData);
+            await api().get("api/user");
         }catch(e){
             console.log(e)
         }
     }
+    console.log(rememberMe)
     return(
-        <div >
-            <div className="container-fluid">
-                    <div className="row">
-                        <div className="col-md-8 col-md-offset-2">
-                            <div className="panel panel-default">
-                                <div className="panel-heading">Login</div>
-                                <div className="panel-body">   
-                                    <div className="col-md-offset-2 col-md-8 col-md-offset-2">
-                                    
-                                    </div>  
-                                    <form className="form-horizontal" onSubmit={handleSubmit} method="POST">
-                                        <div className="form-group">
-                                            <label htmlFor="email" className="col-md-4 control-label">Email</label>
-
-                                            <div className="col-md-6">
-                                                <input id="email" type="email" className="form-control" name="email"   required />
-                                            </div>
-                                        </div>
-
-                                        <div className="form-group">
-                                            <label htmlFor="password" className="col-md-4 control-label">Password</label>
-
-                                            <div className="col-md-6">
-                                                <input id="password" type="password" className="form-control" name="password" required />
-                                            </div>
-                                        </div>
-
-                                        <div className="form-group">
-                                            <div className="col-md-6 col-md-offset-4">
-                                                <div className="checkbox">
-                                                    <label>
-                                                        <input type="checkbox" name="remember" /> Remember Me
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div className="form-group">
-                                            <div className="col-md-8 col-md-offset-4">
-                                                <button type="submit" className="btn btn-primary">
-                                                    Login
-                                                </button>
-
-                                                <li className="btn btn-link">
-                                                    Forgot Your Password?
-                                                </li>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <div className="md:flex md:justify-center mt-6 mb-6">
+        <form className="flex flex-col items-center bg-yellow-200 shadow-md rounded" onSubmit={handleSubmit}>
+            <div class="text-center mb-10">
+                    <h1 class="font-bold text-3xl text-gray-900">LOGIN</h1>
             </div>
+            <div className="mb-4 mx-5">
+                    <label className="block mb-2" htmlFor="email">Email</label>
+                    <input  id="email" type="email" name="email" onChange={(e)=>setData({...data, email:e.target.value})} className="w-full p-2 mb-6 text-indigo-700 border-b-2 border-indigo-500 outline-none focus:bg-gray-300" required autoFocus />
+                </div>
+            <div className="mb-4 mx-5">
+                    <label className="block mb-2" htmlFor="password">Password</label>
+                    <input className="w-full p-2 mb-6 text-indigo-700 border-b-2 border-indigo-500 outline-none focus:bg-gray-300" id="password" type="password" name="password" onChange={(e)=>setData({...data, password:e.target.value})} required autoFocus />
+            </div>
+            <div>
+                <label htmlFor="remember_me">Remember me</label>
+                <input type="checkbox" id="remember_me" name="remember_me" onChange={((e)=>setRememberMe(!rememberMe))}/>
+            </div>
+            <div>
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded focus:outline-none focus:shadow-outline" type="submit" >
+                            Login
+                        </button>
+            </div>
+        
+        </form>
+    </div>
+        
     )
 }
 export default Login;

@@ -29,8 +29,11 @@ const Register = () =>{
             
     return(
     <div className="md:flex md:justify-center mt-6 mb-6">
+                
             <form className="flex flex-col items-center bg-yellow-200 shadow-md rounded" onSubmit={handleSubmit}>
-                <p>Register</p>
+                <div class="text-center mb-10">
+                    <h1 class="font-bold text-3xl text-gray-900">REGISTER</h1>
+                </div>
                 <div className="mb-4">
                     <label className="block mb-2" htmlFor="name">Name</label>
                     <input  id="name" type="text" name="name" onChange={(e)=>setData({...data, name:e.target.value})} required autoFocus />
@@ -52,15 +55,15 @@ const Register = () =>{
                     <label className="block mb-2" htmlFor="phone" >Phone number</label>
                     <input id="phone" type="text"  name="phone" onChange={(e)=>setData({...data, phone:e.target.value})} required /> 
                 </div>
-                <div className="flex items-center justify-around mb-4">
+                <div className="flex justify-between mb-4 space-x-8">
                     <label className="block mb-2" htmlFor="profile"></label>
-                    <input id="profile" type="file" name="profile"  onChange={({ target: { validity, files: [file] } })=>validity.valid && setFile(file)}/>
+                    <input className="ml-2" id="profile" type="file" name="profile"  onChange={({ target: { validity, files: [file] } })=>validity.valid && setFile(file)}/>
                 </div>
-                <div className="flex items-center justify-between">
-                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" >
+                <div className="flex items-center justify-between mb-4 space-x-2">
+                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded focus:outline-none focus:shadow-outline" type="submit" >
                             Register
                         </button>
-                        <button className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" type="submit" >
+                        <button className="font-bold text-sm text-blue-500 hover:text-blue-800" type="submit">
                             Already have an account?
                         </button>
                 </div>
