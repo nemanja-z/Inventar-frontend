@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import api from '../../../services/api';
 import getCookie from '../../../utils/cookie';
+import { useHistory } from "react-router-dom";
+
 
 const Register = () =>{
     const [data, setData] = useState({
@@ -10,6 +12,7 @@ const Register = () =>{
         phone:""});
     const [file, setFile] = useState(null);
     const [confirm, setConfirm] = useState('');
+    const history = useHistory();
     let formData = new FormData();
     formData.append('name', data.name);
     formData.append('email', data.email);
@@ -30,13 +33,13 @@ const Register = () =>{
     return(
     <div className="md:flex md:justify-center mt-6 mb-6">
                 
-            <form className="flex flex-col items-center bg-yellow-200 shadow-md rounded" onSubmit={handleSubmit}>
-                <div class="text-center mb-10">
-                    <h1 class="font-bold text-3xl text-gray-900">REGISTER</h1>
+            <form className="flex flex-col items-center bg-gray-200 shadow-md rounded" onSubmit={handleSubmit}>
+                <div className="text-center mb-10">
+                    <h1 className="font-bold text-3xl text-gray-500">REGISTER</h1>
                 </div>
                 <div className="mb-4">
                     <label className="block mb-2" htmlFor="name">Name</label>
-                    <input  id="name" type="text" name="name" onChange={(e)=>setData({...data, name:e.target.value})} required autoFocus />
+                    <input  id="name" type="text" name="name" onChange={(e)=>setData({...data, name:e.target.value})} required/>
                 </div>
 
                 <div className="mb-4">
@@ -63,7 +66,7 @@ const Register = () =>{
                         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded focus:outline-none focus:shadow-outline" type="submit" >
                             Register
                         </button>
-                        <button className="font-bold text-sm text-blue-500 hover:text-blue-800" type="submit">
+                        <button className="font-bold text-sm text-blue-500 hover:text-blue-800" onClick={()=>history.push('/login')}>
                             Already have an account?
                         </button>
                 </div>

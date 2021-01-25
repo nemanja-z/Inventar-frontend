@@ -1,10 +1,12 @@
 import React, {useState} from "react";
 import api from '../../../services/api';
 import getCookie from '../../../utils/cookie';
+import { useHistory } from "react-router-dom";
 
 const Login = () =>{
     const [data, setData] = useState({email:"", password:""});
     const [rememberMe, setRememberMe] = useState(false);
+    const history = useHistory();
     const formData = new FormData();
     formData.append("email", data.email);
     formData.append("password", data.password);
@@ -19,32 +21,31 @@ const Login = () =>{
             console.log(e)
         }
     }
-    console.log(rememberMe)
     return(
     <div className="md:flex md:justify-center mt-6 mb-6">
-        <form className="flex flex-col items-center bg-yellow-200 shadow-md rounded" onSubmit={handleSubmit}>
-            <div class="text-center mb-10">
-                    <h1 class="font-bold text-3xl text-gray-900">LOGIN</h1>
+        <form className="flex flex-col items-center bg-gray-200 shadow-md rounded px-6" onSubmit={handleSubmit}>
+            <div className="text-center mb-10">
+                    <h1 className="font-bold text-3xl text-gray-500">LOGIN</h1>
             </div>
             <div className="mb-4 mx-5">
                     <label className="block mb-2" htmlFor="email">Email</label>
-                    <input  id="email" type="email" name="email" onChange={(e)=>setData({...data, email:e.target.value})} className="w-full p-2 mb-6 text-indigo-700 border-b-2 border-indigo-500 outline-none focus:bg-gray-300" required autoFocus />
+                    <input  id="email" type="email" name="email" onChange={(e)=>setData({...data, email:e.target.value})} required/>
                 </div>
             <div className="mb-4 mx-5">
                     <label className="block mb-2" htmlFor="password">Password</label>
-                    <input className="w-full p-2 mb-6 text-indigo-700 border-b-2 border-indigo-500 outline-none focus:bg-gray-300" id="password" type="password" name="password" onChange={(e)=>setData({...data, password:e.target.value})} required autoFocus />
+                    <input id="password" type="password" name="password" onChange={(e)=>setData({...data, password:e.target.value})} required/>
             </div>
-            <div>
+            <div className="flex items-center">
                 <label htmlFor="remember_me">Remember me</label>
-                <input type="checkbox" id="remember_me" name="remember_me" onChange={((e)=>setRememberMe(!rememberMe))}/>
+                <input className="h-4 w-4 text-gray-700 border rounded ml-2" type="checkbox" id="remember_me" name="remember_me" onChange={((e)=>setRememberMe(!rememberMe))}/>
             </div>
-            <div>
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded focus:outline-none focus:shadow-outline" type="submit" >
-                            Login
-                        </button>
+            <div className="flex justify-between space-x-4 mt-3 mb-3">
+                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded focus:outline-none focus:shadow-outline" type="submit" >Login</button>
+                <button className="text-blue-500 hover:text-blue-700">Forgot password?</button>
             </div>
-        
+            <button onClick={()=>history.push('/register')} className="text-blue-500 hover:text-blue-700">Need to create an account?</button>
         </form>
+              
     </div>
         
     )
