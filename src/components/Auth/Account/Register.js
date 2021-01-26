@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import api from '../../../services/api';
-import getCookie from '../../../utils/cookie';
 import { useHistory } from "react-router-dom";
+import cookie from '../../../services/cookie';
 
 
 const Register = () =>{
@@ -22,8 +22,12 @@ const Register = () =>{
     const handleSubmit = async(e) => {
                     try{
                         e.preventDefault();
-                        await getCookie();
+                        //await getCookie();
+                        //axios.defaults.withCredentials = true;
+                        await cookie();
+                        //await axios.get('http://localhost:8000/sanctum/csrf-cookie');
                         await api().post('api/register', formData);
+                        await api().get('api/email/verify');
                     }catch(e){
                         console.log(e);
                     }

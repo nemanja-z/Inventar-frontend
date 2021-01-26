@@ -1,7 +1,8 @@
 import React, {useState} from "react";
 import api from '../../../services/api';
-import getCookie from '../../../utils/cookie';
 import { useHistory } from "react-router-dom";
+import cookie from '../../../services/cookie';
+
 
 const Login = () =>{
     const [data, setData] = useState({email:"", password:""});
@@ -14,7 +15,7 @@ const Login = () =>{
     const handleSubmit = async(e) =>{
         try{
             e.preventDefault();
-            await getCookie();
+            await cookie();
             await api().post('api/login', formData);
             await api().get("api/user");
         }catch(e){
