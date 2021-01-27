@@ -1,44 +1,36 @@
-import React from "react";
+import React, {useState} from "react";
+import api from '../../../services/api';
+import cookie from '../../../services/cookie';
 
 
 const Forgot = () => {
+	const [email, setEmail] = useState("");
 
+	const handleForgot =async(e)=>{
+		try{
+			e.preventDefault();
+			await cookie();
+			await api().post('api/forgot-password', {email});
+
+		}catch(e){
+			console.log(e);
+		}
+	}
 
     return(
-			<div>
-				<Nav />
-				<div className="container">
-				    <div className="row">
-				        <div className="col-md-8 col-md-offset-2">
-				            <div className="panel panel-default">
-				                <div className="panel-heading">Reset Password</div>
-				                <div className="panel-body">
-				                	<div className="col-md-offset-2 col-md-8 col-md-offset-2">
-                                    </div>  
-				                    <form className="form-horizontal" role="form" method="POST">
-				                        <div className="form-group">
-				                            <label for="email" className="col-md-4 control-label">E-Mail Address</label>
-
-				                            <div className="col-md-6">
-				                                <input id="email" type="email" ref= "email" className="form-control" name="email"required />
-				                            </div>
-				                        </div>
-
-				                        <div className="form-group">
-				                            <div className="col-md-6 col-md-offset-4">
-				                                <button type="submit" className="btn btn-primary">
-				                                    Send Password Reset Link
-				                                </button>
-				                            </div>
-				                        </div>
-				                    </form>
-				                </div>
-				            </div>
-				        </div>
-				    </div>
-				</div>
-			</div>	
-
+			<div className="md:flex md:justify-center mt-6 mb-6">
+				<form className="flex flex-col items-center bg-gray-200 shadow-md rounded" onSubmit={handleForgot}>
+					<div className="mb-4">
+						<label for="email" className="block mb-2">E-Mail Address</label>
+						<input id="email" type="email" name="email" onChange={e=>setEmail(e.target.value)} required />
+					</div>
+					<div>
+							<button type="submit" className="font-bold text-sm text-blue-500 hover:text-blue-800">
+								Send Password Reset Link
+							</button>
+					</div>
+				</form>
+			</div>
 			)
 }
 

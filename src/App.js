@@ -2,6 +2,7 @@
 import React from 'react';
 import Register from './components/Auth/Account/Register';
 import Login from './components/Auth/Account/Login';
+import Forgot from './components/Auth/Password/Forgot';
 import Main from './components/Main/Main';
 import PrivateRoute from './protected/PrivateRoute';
 import {
@@ -20,6 +21,9 @@ function App() {
             </Route>
             <Route path="/login">
               <Login />
+            </Route>
+            <Route path="/forgot-password">
+              <Forgot />
             </Route>
             <PrivateRoute path="/">
               <Main />

@@ -13,6 +13,7 @@ const fields = {name:"",
 const Register = () =>{
     const [data, setData] = useState(fields);
     const [error, setError] = useState(fields);
+    const [toVerify, setToVerify] = useState(false);
     const history = useHistory();
     let formData = new FormData();
     formData.append('name', data.name);
@@ -24,29 +25,38 @@ const Register = () =>{
     useEffect(()=>{
         if(error){
              setTimeout(() => {
-                setError({password:""})
+                setError(fields)
             }, 5000);
         }
-    }, [error])
+        if(toVerify){
+             setTimeout(() => {
+                setToVerify(false)
+            }, 6000);
+        }
+    }, [error, toVerify])
+    console.log(data)
     const handleSubmit = async(e) => {
                     try{
                         e.preventDefault();
-                        /* if(data.password !== confirm){
-                            return setError({password:"Confirm password must match password!"});
-                        } */
                         await cookie();
                         const register = await api().post('api/register', formData);
+                        const {data:{success}} = register;
                         validation(setError, register);
-                        
-                        console.log(register)
+                        if(success===true){
+                             setData(fields);
+                             setToVerify(true);
+                             setTimeout(() => {
+                                 history.push('/login');
+                             }, 6000);
+                        }     
                     }catch(e){
-                        console.log({e});
+                        console.log(e);
                     }
                 }
                  
             
-    return(
-    <div className="md:flex md:justify-center mt-6 mb-6">
+    return(<>
+    {!toVerify && (<div className="md:flex md:justify-center mt-6 mb-6">
                 
             <form className="flex flex-col items-center bg-gray-200 shadow-md rounded" onSubmit={handleSubmit}>
                 <div className="text-center mb-10">
@@ -60,7 +70,7 @@ const Register = () =>{
 
                 <div className="mb-4">
                     <label className="block mb-2" htmlFor="email">Email</label>
-                    <input id="email" type="email"  name="email" onChange={(e)=>setData({...data, email:e.target.value})} required /> 
+                    <input id="email" type="email" name="email" onChange={(e)=>setData({...data, email:e.target.value})} required /> 
                     {error.email && <p className="mb-2 text-red-600">{error.email}</p>}
                 </div>
                 <div className="mb-4">
@@ -80,7 +90,7 @@ const Register = () =>{
                 </div>
                 <div className="flex justify-between mb-4 space-x-8">
                     <label className="block mb-2" htmlFor="profile"></label>
-                    <input className="ml-2" id="profile" type="file" name="profile"  onChange={({ target: { validity, files: [file] } })=>validity.valid && setData({profile:file})}/>
+                    <input className="ml-2" id="profile" type="file" name="profile"  onChange={({ target: { validity, files: [file] } })=>validity.valid && setData({...data, profile:file})}/>
                     {error.profile && <p className="mb-2 text-red-600">{error.profile}</p>}
                 </div>
                 <div className="flex items-center justify-between mb-4 space-x-2">
@@ -92,7 +102,9 @@ const Register = () =>{
                         </button>
                 </div>
             </form>
-    </div>      
-        )
+    </div>)}
+    {toVerify && (<h2>An email with the confirmation link has been sent to your personal email address. It may take up to a few minutes before you see it in your inbox. Follow the instructions within that email to confirm your password.</h2>)}     
+    </>
+    )
 }
 export default Register;
