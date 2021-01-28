@@ -42,7 +42,7 @@ const Login = () =>{
             </div>
             <div className="flex justify-between space-x-4 mt-3 mb-3">
                 <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded focus:outline-none focus:shadow-outline" type="submit" >Login</button>
-                <button className="text-blue-500 hover:text-blue-700">Forgot password?</button>
+                <button className="text-blue-500 hover:text-blue-700" onClick={()=>history.push('/forgot-password')}>Forgot password?</button>
             </div>
             <button onClick={()=>history.push('/register')} className="text-blue-500 hover:text-blue-700">Need to create an account?</button>
         </form>
