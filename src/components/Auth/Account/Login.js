@@ -17,7 +17,12 @@ const Login = () =>{
             e.preventDefault();
             await cookie();
             await api().post('api/login', formData);
-            await api().get("api/user");
+            const {data} = await api().get("api/user");
+            console.log(data)
+            if(data){
+                history.push("/");
+                localStorage.setItem('loggedIn', true);
+            }
         }catch(e){
             console.log(e)
         }
