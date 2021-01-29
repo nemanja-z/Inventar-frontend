@@ -7,15 +7,15 @@ import Reset from './components/Auth/Password/Reset';
 import Main from './components/Main/Main';
 import PrivateRoute from './protected/PrivateRoute';
 import {
-  BrowserRouter as Router,
   Route,
   Switch,
 } from "react-router-dom";
 
 
 function App() {
+  
+  console.log(window.localStorage.getItem('loggedIn'))
     return (
-        <Router>
         <Switch>
             <Route path="/register">
               <Register />
@@ -33,7 +33,6 @@ function App() {
               <Main />
             </PrivateRoute>
           </Switch>
-        </Router>
     );
 }
 

@@ -1,9 +1,23 @@
 import React, {useState} from "react";
 import { NavLink } from "react-router-dom";
+import api from '../../services/api';
+import cookie from '../../services/cookie';
+import { useHistory } from "react-router-dom";
+
 
 const NavBar = () => {
     const [hidden, setHidden] = useState(true);
-
+    const history = useHistory();
+    const logOut =async()=>{
+        try{
+            await cookie();
+            await api().get('api/logout');
+            localStorage.removeItem('loggedIn');
+            history.push("/");
+        }catch(e){
+            console.log(e)
+        }
+    }
     return(
         <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-gray-300">
             <div className="px-4 mx-auto flex flex-wrap items-center justify-between">
@@ -27,8 +41,8 @@ const NavBar = () => {
                 </div>
                 <div className="origin-top-right absolute right-0 mt-2 w-52 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
                     <div className={hidden ? "hidden" : "flex-col"} aria-orientation="vertical" aria-labelledby="options-menu" role="menu">
-                        <NavLink role="menuitem" className="px-4 py-2 w-full text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"to="/profile">Account settings</NavLink>
-                        <button type="submit" className="w-full text-left w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900" role="menuitem">
+                        <NavLink role="menuitem" className="px-4 py-2 w-full text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" to="/profile">Account settings</NavLink>
+                        <button type="submit" className="w-full text-left w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900" role="menuitem" onClick={logOut}>
                         Sign out
                         </button>
                     </div>

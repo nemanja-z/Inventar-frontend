@@ -13,15 +13,14 @@ const Login = () =>{
     formData.append("password", data.password);
     formData.append("remember", rememberMe);
     const handleSubmit = async(e) =>{
+        e.preventDefault();
         try{
-            e.preventDefault();
             await cookie();
             await api().post('api/login', formData);
             const {data} = await api().get("api/user");
-            console.log(data)
             if(data){
-                history.push("/");
                 localStorage.setItem('loggedIn', true);
+                history.push("/");
             }
         }catch(e){
             console.log(e)

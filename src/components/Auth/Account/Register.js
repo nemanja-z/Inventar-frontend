@@ -34,10 +34,9 @@ const Register = () =>{
             }, 6000);
         }
     }, [error, toVerify])
-    console.log(data)
     const handleSubmit = async(e) => {
+                    e.preventDefault();
                     try{
-                        e.preventDefault();
                         await cookie();
                         const register = await api().post('api/register', formData);
                         const {data:{success}} = register;

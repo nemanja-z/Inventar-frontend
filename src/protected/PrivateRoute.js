@@ -8,15 +8,11 @@ const PrivateRoute = ({children, ...rest}) => {
     return (
         <Route
         {...rest}
-        render={({location}) =>
+        render={() =>
             localStorage.getItem('loggedIn') ? (
             children
             ) : (
-            <Redirect
-                to={{
-                pathname: "/login",
-                state: { from: location }
-                }}
+            <Redirect to="/login"
             />
             )
         }
