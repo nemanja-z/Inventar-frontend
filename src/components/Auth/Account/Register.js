@@ -9,7 +9,8 @@ const fields = {name:"",
         password_confirmation:"",
         profile:"",
         email:"",
-        phone:""}
+        phone:"",
+        company_name:""}
 const Register = () =>{
     const [data, setData] = useState(fields);
     const [error, setError] = useState(fields);
@@ -22,6 +23,7 @@ const Register = () =>{
     formData.append('password', data.password);
     formData.append('password_confirmation', data.password_confirmation)
     formData.append('profile', data.profile);
+    formData.append('company_name', data.company_name);
     useEffect(()=>{
         if(error){
              setTimeout(() => {
@@ -84,8 +86,13 @@ const Register = () =>{
                 </div>
                 <div className="mb-4">
                     <label className="block mb-2" htmlFor="phone">Phone number</label>
-                    <input id="phone" type="text" name="phone" onChange={(e)=>setData({...data, phone:e.target.value})} required /> 
+                    <input id="phone" type="text" name="phone" onChange={(e)=>setData({...data, phone:e.target.value})}/> 
                     {error.phone && <p className="mb-2 text-red-600">{error.phone}</p>}
+                </div>
+                <div className="mb-4">
+                    <label className="block mb-2" htmlFor="company_name">Company name</label>
+                    <input id="company_name" type="text" name="company_name" onChange={(e)=>setData({...data, company_name:e.target.value})} required /> 
+                    {error.company_name && <p className="mb-2 text-red-600">{error.company_name}</p>}
                 </div>
                 <div className="flex justify-between mb-4 space-x-8">
                     <label className="block mb-2" htmlFor="profile"></label>

@@ -1,6 +1,6 @@
 import React from "react";
 import NavBar from "../Navigation/NavBar";
-import Home from './components/Home';
+import Dashboard from './components/Dashboard';
 import Product from './components/Product';
 import Worker from './components/Worker';
 import Customer from './components/Customer';
@@ -21,8 +21,8 @@ const Main = () => {
     <>
     <NavBar/>
     <Switch>
-        <Route path="/home">
-          <Home/>
+        <Route path="/Dashboard">
+          <Dashboard/>
         </Route>
         <Route path="/products">
          <Product/>

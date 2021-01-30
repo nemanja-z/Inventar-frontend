@@ -19,25 +19,45 @@ const NavBar = () => {
         }
     }
     return(
-        <nav className="relative flex items-center justify-between px-2 py-3 bg-gray-300">
+        <nav className="items-center justify-between px-2 py-3 bg-gray-300">
         
-            <div className="px-4 mx-auto flex flex-wrap items-center justify-between">
+            <div className="px-2 mx-auto flex flex-wrap items-center justify-between">
                 <div>
                     Inventar
                 </div>
-                <div className="px-4 mx-auto flex flex-wrap items-center justify-between">
-                    <NavLink to="/home" className="px-1">Home</NavLink>
-                    <NavLink to="/products" className="px-1">Products</NavLink>
-                    <NavLink to="/category" className="px-1">Category</NavLink>
-                    <NavLink to="/customers" className="px-1">Customer</NavLink>
-                    <NavLink to="/orders" className="px-1">Orders</NavLink>
-                    <NavLink to="/warehouse" className="px-1">Warehouse</NavLink>
-                    <NavLink to="/workers" className="px-1">Workers</NavLink>
+                <div className="flex flex-wrap items-center justify-between">
+                    <NavLink to="/dashboard" className="px-2">Dashboard</NavLink>
+                    <NavLink to="/products" className="px-2">Products</NavLink>
+                    <NavLink to="/customers" className="px-2">Customer</NavLink>
+                    <NavLink to="/orders" className="px-2">Orders</NavLink>
+                    <NavLink to="/warehouse" className="px-2">Warehouse</NavLink>
+                    <NavLink to="/workers" className="px-2">Workers</NavLink>
+                </div>
+                <div className="flex flex-row">
+                <div className="relative">
+                    <a className="hover:text-green-500 dark-hover:text-green-300 text-gray-600 dark:text-gray-300">
+                        <svg width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path
+                                d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                        </svg>
+                    </a>
+                    <div
+                        className="absolute w-2 h-2 rounded-full bg-green-500
+                        dark-hover:bg-green-300 right-0 mb-5 bottom-0"></div>
+                </div>
                 </div>
                 <div className="relative inline-block text-left">
                 <div>
-                    <button type="button" className="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500" id="options-menu" onClick={(e=>setHidden(!hidden))}>
-                    <img className="object-cover"
+                    <button type="button" className="inline-flex justify-center " id="options-menu" onClick={(e=>setHidden(!hidden))}>
+                    <img className="h-10 w-10 rounded-full"
                                 src="https://images.unsplash.com/photo-1528892952291-009c663ce843?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=296&amp;q=80"
                                 alt="Avatar"/>
                     </button>
@@ -50,7 +70,6 @@ const NavBar = () => {
                         </button>
                     </div>
                 </div>
-                
                 </div>
                 </div>
             </nav>
