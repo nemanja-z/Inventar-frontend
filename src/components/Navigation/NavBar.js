@@ -19,7 +19,8 @@ const NavBar = () => {
         }
     }
     return(
-        <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-gray-300">
+        <nav className="relative flex items-center justify-between px-2 py-3 bg-gray-300">
+        
             <div className="px-4 mx-auto flex flex-wrap items-center justify-between">
                 <div>
                     Inventar
@@ -36,7 +37,9 @@ const NavBar = () => {
                 <div className="relative inline-block text-left">
                 <div>
                     <button type="button" className="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500" id="options-menu" onClick={(e=>setHidden(!hidden))}>
-                    Settings
+                    <img className="object-cover"
+                                src="https://images.unsplash.com/photo-1528892952291-009c663ce843?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=296&amp;q=80"
+                                alt="Avatar"/>
                     </button>
                 </div>
                 <div className="origin-top-right absolute right-0 mt-2 w-52 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
@@ -47,6 +50,7 @@ const NavBar = () => {
                         </button>
                     </div>
                 </div>
+                
                 </div>
                 </div>
             </nav>
@@ -54,4 +58,3 @@ const NavBar = () => {
 }
 
 export default NavBar;
-
