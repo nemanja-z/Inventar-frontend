@@ -12,18 +12,14 @@ const fields = {name:"",
         phone:"",
         company_name:""}
 const Register = () =>{
-    const [data, setData] = useState(fields);
+    const [data, setData] = useState({});
     const [error, setError] = useState(fields);
     const [toVerify, setToVerify] = useState(false);
     const history = useHistory();
     let formData = new FormData();
-    formData.append('name', data.name);
-    formData.append('email', data.email);
-    formData.append('phone', data.phone);
-    formData.append('password', data.password);
-    formData.append('password_confirmation', data.password_confirmation)
-    formData.append('profile', data.profile);
-    formData.append('company_name', data.company_name);
+    Object.keys(data).forEach(k=>formData.append(k, data[k]));
+
+
     useEffect(()=>{
         if(error){
              setTimeout(() => {

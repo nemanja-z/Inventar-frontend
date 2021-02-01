@@ -3,15 +3,15 @@ import api from '../../../services/api';
 import { useHistory } from "react-router-dom";
 import cookie from '../../../services/cookie';
 
-
+const fields={email:"", password:""};
 const Login = () =>{
-    const [data, setData] = useState({email:"", password:""});
+    const [data, setData] = useState({});
+    const [error, setError] = useState(fields)
     const [rememberMe, setRememberMe] = useState(false);
     const history = useHistory();
     const formData = new FormData();
-    formData.append("email", data.email);
-    formData.append("password", data.password);
-    formData.append("remember", rememberMe);
+    Object.keys(data).forEach(k=>formData.append(k, data[k]));
+
     const handleSubmit = async(e) =>{
         e.preventDefault();
         try{
