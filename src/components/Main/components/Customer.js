@@ -1,10 +1,16 @@
 import React from "react";
+import CreateCustomer from './Forms/CreateCustomer';
+import Modal from "./Common/Modal";
 
 const Customer = () => {
 
 
     return(
         <div className="flex flex-col mt-8">
+        <h3 className="text-gray-700 text-3xl font-medium mb-5">Customers</h3>
+        <Modal text="Create customer profile">
+            <CreateCustomer/>
+            </Modal>
             <div className="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
                 <div
                     className="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
@@ -46,7 +52,7 @@ const Customer = () => {
 
                                 <td
                                     className="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
-                                    <a href="#" className="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                    <a className="text-indigo-600 hover:text-indigo-900">Edit</a>
                                 </td>
                             </tr>
                         </tbody>
