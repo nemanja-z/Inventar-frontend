@@ -6,13 +6,17 @@ import './index.css';
 import {
   BrowserRouter as Router
 } from "react-router-dom";
+import {Store} from "./state/Store";
+
 
 ReactDOM.render(
+  <Store>
   <Router>
   <React.StrictMode>
     <App />
   </React.StrictMode>
-  </Router>,
+  </Router>
+  </Store>,
   document.getElementById('root')
 );
 

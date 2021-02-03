@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import NavBar from "../Navigation/NavBar";
 import Dashboard from './components/Dashboard';
 import Product from './components/Product';
@@ -7,7 +7,8 @@ import Customer from './components/Customer';
 import Warehouse from './components/Warehouse';
 import Profile from './components/Profile';
 import Order from './components/Order';
-
+/* import api from '../service/api';
+import cookie from '../service/cookie'; */
 
 import {
   Route,
@@ -16,6 +17,12 @@ import {
 
 
 const Main = () => {
+
+
+  /* useEffect(()=>{
+    const user =  
+  }) */
+
 
     return(
     <>

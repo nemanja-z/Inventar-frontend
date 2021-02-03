@@ -1,18 +1,20 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import { NavLink } from "react-router-dom";
 import api from '../../services/api';
 import cookie from '../../services/cookie';
 import { useHistory } from "react-router-dom";
+import {GlobalContext} from '../../state/Store';
 
 
 const NavBar = () => {
+    const {dispatchUser} = useContext(GlobalContext);
     const [hidden, setHidden] = useState(true);
     const history = useHistory();
     const logOut =async()=>{
         try{
             await cookie();
             await api().get('api/logout');
-            localStorage.removeItem('loggedIn');
+            dispatchUser({type:'logout'});
             history.push("/");
         }catch(e){
             console.log(e)

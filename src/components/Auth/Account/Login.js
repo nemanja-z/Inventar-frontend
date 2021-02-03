@@ -1,10 +1,14 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import api from '../../../services/api';
 import { useHistory } from "react-router-dom";
 import cookie from '../../../services/cookie';
+import {GlobalContext} from '../../../state/Store';
+
 
 const fields={email:"", password:""};
 const Login = () =>{
+    
+    const {user, dispatchUser} = useContext(GlobalContext);
     const [data, setData] = useState({});
     const [error, setError] = useState(fields)
     const [rememberMe, setRememberMe] = useState(false);
@@ -19,7 +23,7 @@ const Login = () =>{
             await api().post('api/login', formData);
             const {data} = await api().get("api/user");
             if(data){
-                localStorage.setItem('loggedIn', true);
+                dispatchUser({type:'login', payload:data});
                 history.push("/");
             }
         }catch(e){
