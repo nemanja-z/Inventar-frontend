@@ -7,8 +7,8 @@ import Customer from './components/Customer';
 import Warehouse from './components/Warehouse';
 import Profile from './components/Profile';
 import Order from './components/Order';
-/* import api from '../service/api';
-import cookie from '../service/cookie'; */
+import api from '../../services/api';
+import cookie from '../../services/cookie';
 
 import {
   Route,
@@ -19,9 +19,18 @@ import {
 const Main = () => {
 
 
-  /* useEffect(()=>{
-    const user =  
-  }) */
+  useEffect(()=>{
+    const company = async()=>{
+      try{
+        await cookie();
+        const {data} = await api().get('api/company');
+        console.log(data)
+      }catch(e){
+        console.log(e)
+      }
+    }
+    company(); 
+  })
 
 
     return(

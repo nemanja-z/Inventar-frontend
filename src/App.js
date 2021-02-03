@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Register from './components/Auth/Account/Register';
 import Login from './components/Auth/Account/Login';
@@ -14,7 +13,6 @@ import {
 
 function App() {
   
-  console.log(window.localStorage.getItem('loggedIn'))
     return (
         <Switch>
             <Route path="/register">
