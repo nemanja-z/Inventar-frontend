@@ -11,9 +11,7 @@ export const Store = ({children}) => {
     const [company, dispatchCompany] = useReducer(companyReducer, null);
     const [product, dispatchProduct] = useReducer(productReducer, null);
     
-    const contextValue = useMemo(() => {
-        return { user, dispatchUser, company, dispatchCompany, product, dispatchProduct };
-        }, [user, dispatchUser, company, dispatchCompany, product, dispatchProduct]);
+    const contextValue = useMemo(() =>({ user, dispatchUser, company, dispatchCompany, product, dispatchProduct }), [user, dispatchUser, company, dispatchCompany, product, dispatchProduct]);
 
 
     return(
