@@ -5,6 +5,7 @@ import productReducer from "./reducers/productReducer";
 import vehicleReducer from "./reducers/vehicleReducer";
 import warehouseReducer from "./reducers/warehouseReducer";
 import customerReducer from "./reducers/customerReducer";
+import workerReducer from "./reducers/workerReducer";
 
 
 
@@ -16,9 +17,10 @@ export const Store = ({children}) => {
     const [vehicle, dispatchVehicle] = useReducer(vehicleReducer, null);
     const [warehouse, dispatchWarehouse] = useReducer(warehouseReducer, null);
     const [customer, dispatchCustomer] = useReducer(customerReducer, null);
+    const [worker, dispatchWorker] = useReducer(workerReducer, null);
 
     
-    const contextValue = useMemo(() =>({ user, dispatchUser, company, dispatchCompany, product, dispatchProduct, vehicle, dispatchVehicle, warehouse, dispatchWarehouse, customer, dispatchCustomer }), [user, dispatchUser, company, dispatchCompany, product, dispatchProduct, vehicle, dispatchVehicle, warehouse, dispatchWarehouse, customer, dispatchCustomer ]);
+    const contextValue = useMemo(() =>({ user, dispatchUser, company, dispatchCompany, product, dispatchProduct, vehicle, dispatchVehicle, warehouse, dispatchWarehouse, customer, dispatchCustomer, worker, dispatchWorker }), [user, dispatchUser, company, dispatchCompany, product, dispatchProduct, vehicle, dispatchVehicle, warehouse, dispatchWarehouse, customer, dispatchCustomer, worker, dispatchWorker ]);
 
 
     return(

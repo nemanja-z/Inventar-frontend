@@ -1,10 +1,11 @@
-import React, {createRef} from "react";
+import React, {useContext} from "react";
 import CreateProduct from './Forms/CreateProduct';
 import Modal from "./Common/Modal";
+import {GlobalContext} from '../../../state/Store';
 
 
 const Product = () => {
-
+    const {product} = useContext(GlobalContext);
     return(
         <div className="flex flex-col mt-8">
             <h3 className="text-gray-700 text-3xl font-medium mb-5">Products</h3>
@@ -30,38 +31,39 @@ const Product = () => {
                                     </thead>
     
                                     <tbody className="bg-white">
-                                    <tr>
+                                    {product && product.map(p=>
+                                    <tr key={p.id}>
                                             <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                                 <div className="flex items-center">
                                                     <div className="ml-4">
-                                                        <div className="text-sm leading-5 text-gray-500">Laptop</div>
+                                                        <div className="text-sm leading-5 text-gray-500">{p.name}</div>
                                                     </div>
                                                 </div>
                                             </td>
     
                                             <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                                <div className="text-sm leading-5 text-gray-900">IT</div>
+                                                <div className="text-sm leading-5 text-gray-900">{p.category}</div>
                                             </td>
     
                                             <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                                <div className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">20</div>
+                                                <div className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">{p.stock}</div>
                                             </td>
     
-                                            <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">5</td>
+                                            <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">{p.min_stock}</td>
 
-                                            <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">50</td>
+                                            <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">{p.max_stock}</td>
 
-                                            <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">15000</td>
+                                            <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">{p.price}</td>
 
-                                            <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500"></td>
+                                            <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">{p.distributor}</td>
 
-                                            <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500"></td>
+                                            <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">{p.manufacturer}</td>
 
 
                                             <td className="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
                                                 <a href="#" className="text-indigo-600 hover:text-indigo-900">Edit</a>
                                             </td>
-                                        </tr>
+                                        </tr>)}
                                     </tbody>
                                 </table>
                             </div>

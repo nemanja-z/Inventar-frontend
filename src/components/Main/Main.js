@@ -25,7 +25,7 @@ const Main = () => {
       try{
         await cookie();
         const {data} = await api().get('api/company');
-        console.log(data, data.customer.length)
+        console.log(data)
         if(data){
           dispatchCompany({type:'init', payload:data});
           dispatchCustomer({type:'init', payload:data.customer});

@@ -1,10 +1,11 @@
-import React from "react";
+import React, {useContext} from "react";
 import CreateWarehouse from './Forms/CreateWarehouse';
 import Modal from "./Common/Modal";
+import {GlobalContext} from '../../../state/Store';
 
 
 const Warehouse = () => {
-
+    const {warehouse} = useContext(GlobalContext);
 
     return(
         <div className="flex flex-col mt-8">
@@ -29,18 +30,19 @@ const Warehouse = () => {
                                     </thead>
     
                                     <tbody className="bg-white">
+                                    {warehouse && warehouse.map(w=>
                                     <tr>
                                             <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                                <div className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Warehouse</div>
+                                                <div className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">{w.name}</div>
                                             </td>
     
-                                            <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">NA</td>
+                                            <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">{w.address}</td>
     
                                             <td
                                                 className="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
                                                 <a href="#" className="text-indigo-600 hover:text-indigo-900">Edit</a>
                                             </td>
-                                        </tr>
+                                        </tr>)}
                                     </tbody>
                                 </table>
                             </div>

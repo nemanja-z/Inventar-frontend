@@ -1,9 +1,10 @@
-import React from "react";
+import React, {useContext} from "react";
 import CreateWorker from './Forms/CreateWorker';
 import Modal from "./Common/Modal";
+import {GlobalContext} from '../../../state/Store';
 
 const Worker = () => {
-
+    const {worker} = useContext(GlobalContext);
 
     return(
         <div className="flex flex-col mt-8">
@@ -25,18 +26,19 @@ const Worker = () => {
                                     </thead>
     
                                     <tbody className="bg-white">
+                                    {worker && worker.map(w=>
                                     <tr>
                                             <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                                <div className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">John Doe</div>
+                                                <div className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">{w.name}</div>
                                             </td>
     
-                                            <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">goodemail@gmail.com</td>
-                                            <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">555-111</td>
+                                            <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">{w.email}</td>
+                                            <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">{w.phone}</td>
                                             <td
                                                 className="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
                                                 <a href="#" className="text-indigo-600 hover:text-indigo-900">Edit</a>
                                             </td>
-                                        </tr>
+                                        </tr>)}
                                     </tbody>
                                 </table>
                             </div>
