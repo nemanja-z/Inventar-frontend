@@ -1,6 +1,7 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import api from '../../../../services/api';
 import cookie from '../../../../services/cookie';
+import {GlobalContext} from '../../../../state/Store';
 
 
 const fields = {
@@ -12,8 +13,10 @@ const fields = {
 const CreateCustomer = () => {
     const [data, setData] = useState({});
     const [error, setError] = useState(fields);
+    const {customer,company, dispatchCustomer} = useContext(GlobalContext);
     const formData = new FormData();
-    Object.keys(data).forEach(k=>formData.append(k, data[k]));
+    Object.keys(data).forEach(k=>formData.set(k, data[k]));
+    formData.set('company_name', company.company_name);
 
     const handleSubmit = async(e) => {
         e.preventDefault();

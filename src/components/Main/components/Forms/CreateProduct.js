@@ -19,17 +19,19 @@ const CreateProduct = () => {
     const [data, setData] = useState({});
     const [error, setError] = useState(fields);
     const formData = new FormData();
-    const {company} = useContext(GlobalContext);
+    const {company, dispatchProduct} = useContext(GlobalContext);
     Object.keys(data).forEach(k=>formData.set(k, data[k]));
+    formData.set("company_name", company.company_name);
     const handleSubmit = async(e) => {
         e.preventDefault();
         try{
-            formData.append("company_name", company.company_name);
             await cookie();
             const {data} = await api().post('api/product', formData);
-            console.log(data)
-        }catch{
-
+            if(data){
+                dispatchProduct({type:'add', payload:data});
+            }
+        }catch(e){
+            console.log(e)
         }
     }
     return(

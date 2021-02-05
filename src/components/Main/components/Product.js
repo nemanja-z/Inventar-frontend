@@ -1,10 +1,9 @@
-import React from "react";
+import React, {createRef} from "react";
 import CreateProduct from './Forms/CreateProduct';
 import Modal from "./Common/Modal";
 
 
 const Product = () => {
-
 
     return(
         <div className="flex flex-col mt-8">

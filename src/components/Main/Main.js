@@ -17,14 +17,22 @@ import {
 
 
 const Main = () => {
-  const {dispatchCompany} = useContext(GlobalContext)
+  const {dispatchCompany, dispatchCustomer, dispatchProduct, dispatchWorker, dispatchWarehouse} = useContext(GlobalContext);
+
 
   useEffect(()=>{
     const company = async()=>{
       try{
         await cookie();
         const {data} = await api().get('api/company');
-        dispatchCompany({type:'init', payload:data[0]});
+        console.log(data, data.customer.length)
+        if(data){
+          dispatchCompany({type:'init', payload:data});
+          dispatchCustomer({type:'init', payload:data.customer});
+          dispatchProduct({type:'init', payload:data.product});
+          dispatchWorker({type:'init', payload:data.worker});
+          dispatchWarehouse({type:'init', payload:data.warehouse});
+        }
       }catch(e){
         console.log(e)
       }
