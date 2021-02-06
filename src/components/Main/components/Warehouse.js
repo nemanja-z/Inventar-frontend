@@ -6,7 +6,7 @@ import {GlobalContext} from '../../../state/Store';
 
 const Warehouse = () => {
     const {warehouse} = useContext(GlobalContext);
-
+    console.log(warehouse)
     return(
         <div className="flex flex-col mt-8">
         <h3 className="text-gray-700 text-3xl font-medium mb-5">Warehouse</h3>
@@ -31,7 +31,7 @@ const Warehouse = () => {
     
                                     <tbody className="bg-white">
                                     {warehouse && warehouse.map(w=>
-                                    <tr>
+                                    <tr key={w.id}>
                                             <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                                 <div className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">{w.name}</div>
                                             </td>

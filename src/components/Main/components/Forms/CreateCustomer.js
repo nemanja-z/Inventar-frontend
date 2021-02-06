@@ -22,7 +22,10 @@ const CreateCustomer = () => {
         e.preventDefault();
         try{
           await cookie();
-          await api().post('api/customer', formData);  
+          const {data:{data:response}} = await api().post('api/customer', formData); 
+          if(response){
+              dispatchCustomer({type:'add', payload:response});
+          } 
         }catch(e){
             console.log(e);
         }

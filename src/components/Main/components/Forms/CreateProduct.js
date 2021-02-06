@@ -26,9 +26,9 @@ const CreateProduct = () => {
         e.preventDefault();
         try{
             await cookie();
-            const {data} = await api().post('api/product', formData);
-            if(data){
-                dispatchProduct({type:'add', payload:data});
+            const {data:{data:response}} = await api().post('api/product', formData);
+            if(response){
+                dispatchProduct({type:'add', payload:response});
             }
         }catch(e){
             console.log(e)

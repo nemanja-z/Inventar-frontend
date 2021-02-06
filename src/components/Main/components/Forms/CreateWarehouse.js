@@ -22,8 +22,10 @@ const CreateWarehouse = () => {
         e.preventDefault();
         try{
             await cookie();
-            const {data} = await api().post('api/warehouse', formData);
-            console.log(data)
+            const {data:{data:response}} = await api().post('api/warehouse', formData);
+            if(response){
+                dispatchWarehouse({type:'add', payload:response})
+            }
         }catch{
 
         }

@@ -17,7 +17,7 @@ const [data, setData] = useState({});
         e.preventDefault();
         try{
           await cookie();
-          await api().post('api/order', formData);  
+          const {data:{data:response}}= await api().post('api/order', formData);  
         }catch(e){
             console.log(e);
         }

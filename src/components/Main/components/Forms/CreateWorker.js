@@ -23,8 +23,10 @@ const CreateWorker = () => {
         e.preventDefault();
         try{
             await cookie();
-            const {data} = await api().post('api/worker', formData);
-            console.log(data)
+            const {data:{data:response}} = await api().post('api/worker', formData);
+            if(response){
+                dispatchWorker({type:'add', payload:response})
+            }
         }catch{
 
         }
