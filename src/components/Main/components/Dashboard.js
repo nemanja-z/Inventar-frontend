@@ -3,7 +3,7 @@ import {GlobalContext} from '../../../state/Store';
 
 const Dashboard = () => {
     const {customer, product} = useContext(GlobalContext);
-    console.log(product.length)
+    //console.log(product)
     return(
         <div className="flex-1 flex flex-col overflow-hidden">
             <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">

@@ -6,6 +6,7 @@ import {GlobalContext} from '../../../state/Store';
 
 const Product = () => {
     const {product} = useContext(GlobalContext);
+    console.log(product)
     return(
         <div className="flex flex-col mt-8">
             <h3 className="text-gray-700 text-3xl font-medium mb-5">Products</h3>
@@ -19,6 +20,7 @@ const Product = () => {
                                     <thead>
                                         <tr>
                                             <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                                            <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Picture</th>
                                             <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Category</th>
                                             <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Stock</th>
                                             <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Min stock</th>
@@ -40,7 +42,9 @@ const Product = () => {
                                                     </div>
                                                 </div>
                                             </td>
-    
+                                            <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                                <img width="50px" src={p.picture}/>
+                                            </td>
                                             <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                                 <div className="text-sm leading-5 text-gray-900">{p.category}</div>
                                             </td>
