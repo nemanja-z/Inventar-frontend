@@ -4,7 +4,6 @@ import Dashboard from './components/Dashboard';
 import Product from './components/Product';
 import Worker from './components/Worker';
 import Customer from './components/Customer';
-import Warehouse from './components/Warehouse';
 import Profile from './components/Profile';
 import Order from './components/Order';
 import api from '../../services/api';
@@ -19,8 +18,8 @@ import {
 
 
 const Main = () => {
-  const {user,company, worker, customer, product, warehouse} = useContext(GlobalStateContext);
-  const {dispatchCompany, dispatchCustomer, dispatchProduct, dispatchWorker, dispatchWarehouse} = useContext(GlobalDispatchContext);
+  const {user,company, worker, customer, product} = useContext(GlobalStateContext);
+  const {dispatchCompany, dispatchCustomer, dispatchProduct, dispatchWorker} = useContext(GlobalDispatchContext);
   console.log(user)
   useEffect(()=>{
     const company = async()=>{
@@ -33,8 +32,6 @@ const Main = () => {
           dispatchCustomer({type:'init', payload:data.customer});
           dispatchProduct({type:'init', payload:data.product});
           dispatchWorker({type:'init', payload:data.worker});
-          dispatchWarehouse({type:'init', payload:data.warehouse});
-
         }
       }catch(e){
         console.log(e)
@@ -48,7 +45,7 @@ const Main = () => {
     <>
     <NavBar/>
     <Switch>
-        <Route path="/Dashboard">
+        <Route path="/dashboard">
           <Dashboard/>
         </Route>
         <Route path="/products">
@@ -59,9 +56,6 @@ const Main = () => {
         </Route>
         <Route path="/orders">
           <Order/>
-        </Route>
-        <Route path="/warehouse">
-          <Warehouse/>
         </Route>
         <Route path="/workers">
           <Worker/>

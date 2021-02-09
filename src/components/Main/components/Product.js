@@ -43,7 +43,7 @@ const Product = () => {
                                                 </div>
                                             </td>
                                             <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                                <img width="50px" src={`http://localhost:8000/${p.picture}`}/>
+                                                <img width="50px" src={p.picture}/>
                                             </td>
                                             <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                                 <div className="text-sm leading-5 text-gray-900">{p.category}</div>

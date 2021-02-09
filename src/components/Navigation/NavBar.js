@@ -32,7 +32,6 @@ const NavBar = () => {
                     <NavLink to="/products" className="px-2">Products</NavLink>
                     <NavLink to="/customers" className="px-2">Customer</NavLink>
                     <NavLink to="/orders" className="px-2">Orders</NavLink>
-                    <NavLink to="/warehouse" className="px-2">Warehouse</NavLink>
                     <NavLink to="/workers" className="px-2">Workers</NavLink>
                 </div>
                 <div className="flex flex-row">
