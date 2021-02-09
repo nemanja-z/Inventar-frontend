@@ -1,11 +1,11 @@
 import React, {useContext} from "react";
 import CreateProduct from './Forms/CreateProduct';
 import Modal from "./Common/Modal";
-import {GlobalContext} from '../../../state/Store';
+import {GlobalStateContext} from '../../../state/Store';
 
 
 const Product = () => {
-    const {product} = useContext(GlobalContext);
+    const {product} = useContext(GlobalStateContext);
     console.log(product)
     return(
         <div className="flex flex-col mt-8">
@@ -43,7 +43,7 @@ const Product = () => {
                                                 </div>
                                             </td>
                                             <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                                <img width="50px" src={p.picture}/>
+                                                <img width="50px" src={`http://localhost:8000/${p.picture}`}/>
                                             </td>
                                             <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                                 <div className="text-sm leading-5 text-gray-900">{p.category}</div>

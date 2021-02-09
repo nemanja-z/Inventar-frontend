@@ -9,24 +9,33 @@ import workerReducer from "./reducers/workerReducer";
 
 
 
-export const GlobalContext = createContext();
+export const GlobalStateContext = createContext();
+export const GlobalDispatchContext = createContext();
+
 export const Store = ({children}) => {
-    const [user, dispatchUser] = useReducer(userReducer, null);
-    const [company, dispatchCompany] = useReducer(companyReducer, null);
-    const [product, dispatchProduct] = useReducer(productReducer, null);
-    const [vehicle, dispatchVehicle] = useReducer(vehicleReducer, null);
-    const [warehouse, dispatchWarehouse] = useReducer(warehouseReducer, null);
-    const [customer, dispatchCustomer] = useReducer(customerReducer, null);
-    const [worker, dispatchWorker] = useReducer(workerReducer, null);
+    const userData = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : '';
+    console.log(userData)
+    const [user, dispatchUser] = useReducer(userReducer, userData);
+    const [company, dispatchCompany] = useReducer(companyReducer, {});
+    const [product, dispatchProduct] = useReducer(productReducer, []);
+    const [vehicle, dispatchVehicle] = useReducer(vehicleReducer, []);
+    const [warehouse, dispatchWarehouse] = useReducer(warehouseReducer, []);
+    const [customer, dispatchCustomer] = useReducer(customerReducer, []);
+    const [worker, dispatchWorker] = useReducer(workerReducer, []);
 
     
-    const contextValue = useMemo(() =>({ user, dispatchUser, company, dispatchCompany, product, dispatchProduct, vehicle, dispatchVehicle, warehouse, dispatchWarehouse, customer, dispatchCustomer, worker, dispatchWorker }), [user, dispatchUser, company, dispatchCompany, product, dispatchProduct, vehicle, dispatchVehicle, warehouse, dispatchWarehouse, customer, dispatchCustomer, worker, dispatchWorker ]);
-
+    const state = useMemo(() =>({ user, company, product, vehicle, warehouse, customer, worker }), [user, company, product, vehicle, warehouse, customer, worker ]);
+    /* const state = {
+        user, company, product, vehicle, warehouse, customer, worker
+    } */
+    const dispatch = {dispatchCompany,dispatchCustomer,dispatchUser,dispatchVehicle,dispatchWarehouse,dispatchWorker,dispatchProduct};
 
     return(
-        <GlobalContext.Provider value={contextValue}>
+        <GlobalDispatchContext.Provider value={dispatch}>
+        <GlobalStateContext.Provider value={state}>
         {children}
-        </GlobalContext.Provider>
+        </GlobalStateContext.Provider>
+        </GlobalDispatchContext.Provider>
     )
 }
 

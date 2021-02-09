@@ -1,15 +1,13 @@
 const reducer = (state, action) =>{
   switch(action.type){
     case 'login':
-    localStorage.setItem('loggedIn', true);
-      return {
-        user:action.payload,
-        isLoggedIn:localStorage.getItem('loggedIn')
-      };
+      localStorage.setItem('user', JSON.stringify(action.payload));
+      return action.payload
     case 'logout':
-      return localStorage.removeItem('loggedIn');
+      localStorage.removeItem('user');
+      return {};
     default:
-      return state;
+      throw new Error(`Unhandled action type: ${action.type}`);
     }
 }
 export default reducer;

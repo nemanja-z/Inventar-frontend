@@ -9,7 +9,9 @@ import Profile from './components/Profile';
 import Order from './components/Order';
 import api from '../../services/api';
 import cookie from '../../services/cookie';
-import {GlobalContext} from '../../state/Store';
+import {GlobalStateContext} from '../../state/Store';
+import {GlobalDispatchContext} from '../../state/Store';
+
 import {
   Route,
   Switch,
@@ -17,21 +19,22 @@ import {
 
 
 const Main = () => {
-  const {dispatchCompany, dispatchCustomer, dispatchProduct, dispatchWorker, dispatchWarehouse} = useContext(GlobalContext);
-
-
+  const {user,company, worker, customer, product, warehouse} = useContext(GlobalStateContext);
+  const {dispatchCompany, dispatchCustomer, dispatchProduct, dispatchWorker, dispatchWarehouse} = useContext(GlobalDispatchContext);
+  console.log(user)
   useEffect(()=>{
     const company = async()=>{
       try{
         await cookie();
-        const {data} = await api().get('api/company');
-        console.log(data)
+        const {data} = await api().get('api/company/'+user.id);
+        console.log(data, 'daaaaa')
         if(data){
           dispatchCompany({type:'init', payload:data});
           dispatchCustomer({type:'init', payload:data.customer});
           dispatchProduct({type:'init', payload:data.product});
           dispatchWorker({type:'init', payload:data.worker});
           dispatchWarehouse({type:'init', payload:data.warehouse});
+
         }
       }catch(e){
         console.log(e)

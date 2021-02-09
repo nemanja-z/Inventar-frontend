@@ -1,7 +1,8 @@
 import React, {useState, useContext} from "react";
 import api from '../../../../services/api';
 import cookie from '../../../../services/cookie';
-import {GlobalContext} from '../../../../state/Store';
+import {GlobalStateContext} from '../../../../state/Store';
+import {GlobalDispatchContext} from '../../../../state/Store';
 
 
 const fields = {
@@ -13,7 +14,8 @@ const fields = {
 const CreateCustomer = () => {
     const [data, setData] = useState({});
     const [error, setError] = useState(fields);
-    const {customer,company, dispatchCustomer} = useContext(GlobalContext);
+    const {customer,company} = useContext(GlobalStateContext);
+    const {dispatchCustomer} = useContext(GlobalDispatchContext);
     const formData = new FormData();
     Object.keys(data).forEach(k=>formData.set(k, data[k]));
     formData.set('company_name', company.company_name);

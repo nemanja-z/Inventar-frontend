@@ -1,4 +1,4 @@
-const reducer = (state=[], action) =>{
+const reducer = (state, action) =>{
   switch(action.type){
     case 'init':
       return action.payload;
@@ -6,7 +6,7 @@ const reducer = (state=[], action) =>{
         const {id} = action.payload;
         return state.map(comp=>comp.id === id ? action.payload : comp);
     default:
-      return state;
+      throw new Error(`Unhandled action type: ${action.type}`);
     }
 }
 export default reducer;

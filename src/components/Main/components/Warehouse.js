@@ -1,11 +1,11 @@
 import React, {useContext} from "react";
 import CreateWarehouse from './Forms/CreateWarehouse';
 import Modal from "./Common/Modal";
-import {GlobalContext} from '../../../state/Store';
+import {GlobalStateContext} from '../../../state/Store';
 
 
 const Warehouse = () => {
-    const {warehouse} = useContext(GlobalContext);
+    const {warehouse} = useContext(GlobalStateContext);
     console.log(warehouse)
     return(
         <div className="flex flex-col mt-8">

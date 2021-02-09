@@ -3,12 +3,12 @@ import api from '../../../services/api';
 import { useHistory } from "react-router-dom";
 import cookie from '../../../services/cookie';
 import validation from '../../../utils/validation';
-import {GlobalContext} from '../../../state/Store';
+import {GlobalStateContext} from '../../../state/Store';
 
 const fields = {company_name:""};
 const RegisterCompany = ({name, setToVerify}) =>{
     const history = useHistory();
-    const {user} = useContext(GlobalContext);
+    const {user} = useContext(GlobalStateContext);
     const [data, setData] = useState({});
 
     const [error, setError] = useState(fields);

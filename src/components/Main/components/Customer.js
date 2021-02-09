@@ -1,10 +1,10 @@
 import React, {useContext} from "react";
 import CreateCustomer from './Forms/CreateCustomer';
 import Modal from "./Common/Modal";
-import {GlobalContext} from '../../../state/Store';
+import {GlobalStateContext} from '../../../state/Store';
 
 const Customer = () => {
-    const {customer} = useContext(GlobalContext);
+    const {customer} = useContext(GlobalStateContext);
 
     return(
         <div className="flex flex-col mt-8">

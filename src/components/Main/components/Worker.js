@@ -1,10 +1,10 @@
 import React, {useContext} from "react";
 import CreateWorker from './Forms/CreateWorker';
 import Modal from "./Common/Modal";
-import {GlobalContext} from '../../../state/Store';
+import {GlobalStateContext} from '../../../state/Store';
 
 const Worker = () => {
-    const {worker} = useContext(GlobalContext);
+    const {worker} = useContext(GlobalStateContext);
 
     return(
         <div className="flex flex-col mt-8">
@@ -27,7 +27,7 @@ const Worker = () => {
     
                                     <tbody className="bg-white">
                                     {worker && worker.map(w=>
-                                    <tr>
+                                    <tr key={w.id}>
                                             <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                                 <div className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">{w.name}</div>
                                             </td>

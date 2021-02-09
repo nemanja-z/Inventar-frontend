@@ -3,11 +3,11 @@ import { NavLink } from "react-router-dom";
 import api from '../../services/api';
 import cookie from '../../services/cookie';
 import { useHistory } from "react-router-dom";
-import {GlobalContext} from '../../state/Store';
+import {GlobalDispatchContext} from '../../state/Store';
 
 
 const NavBar = () => {
-    const {dispatchUser} = useContext(GlobalContext);
+    const {dispatchUser} = useContext(GlobalDispatchContext);
     const [hidden, setHidden] = useState(true);
     const history = useHistory();
     const logOut =async()=>{
@@ -21,7 +21,7 @@ const NavBar = () => {
         }
     }
     return(
-        <nav className="items-center justify-between px-2 py-3 bg-gray-300">
+        <nav className="items-center w-full justify-between px-2 py-3 bg-gray-300">
         
             <div className="px-2 mx-auto flex flex-wrap items-center justify-between">
                 <div>

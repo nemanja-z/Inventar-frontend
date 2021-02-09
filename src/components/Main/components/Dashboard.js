@@ -1,9 +1,9 @@
 import React, {useContext} from "react";
-import {GlobalContext} from '../../../state/Store';
+import {GlobalStateContext} from '../../../state/Store';
 
 const Dashboard = () => {
-    const {customer, product} = useContext(GlobalContext);
-    //console.log(product)
+    const {customer, product} = useContext(GlobalStateContext);
+    console.log(product)
     return(
         <div className="flex-1 flex flex-col overflow-hidden">
             <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
@@ -39,7 +39,7 @@ const Dashboard = () => {
                                     </div>
     
                                     <div className="mx-5">
-                                        <h4 className="text-2xl font-semibold text-gray-700">{customer.length}</h4>
+                                        <h4 className="text-2xl font-semibold text-gray-700">{customer?customer.length:0}</h4>
                                         <div className="text-gray-500">Customers</div>
                                     </div>
                                 </div>
@@ -83,7 +83,7 @@ const Dashboard = () => {
                                     </div>
     
                                     <div className="mx-5">
-                                        <h4 className="text-2xl font-semibold text-gray-700">{product.length}</h4>
+                                        <h4 className="text-2xl font-semibold text-gray-700">{product?product.length:0}</h4>
                                         <div className="text-gray-500">Available Products</div>
                                     </div>
                                 </div>

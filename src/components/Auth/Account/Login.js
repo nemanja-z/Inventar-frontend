@@ -2,13 +2,15 @@ import React, {useState, useContext} from "react";
 import api from '../../../services/api';
 import { useHistory } from "react-router-dom";
 import cookie from '../../../services/cookie';
-import {GlobalContext} from '../../../state/Store';
+import {GlobalStateContext} from '../../../state/Store';
+import {GlobalDispatchContext} from '../../../state/Store';
 
 
 const fields={email:"", password:""};
 const Login = () =>{
     
-    const {user, dispatchUser} = useContext(GlobalContext);
+    const {user} = useContext(GlobalStateContext);
+    const {dispatchUser} = useContext(GlobalDispatchContext);
     const [data, setData] = useState({});
     const [error, setError] = useState(fields)
     const [rememberMe, setRememberMe] = useState(false);
